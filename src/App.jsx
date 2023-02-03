@@ -1,5 +1,4 @@
-import {Switch, Route, NavLink} from 'react-router-dom';
-import './App.css'
+import {Switch, Route, Link, Redirect} from 'react-router-dom';
 
 const Home = () => {
   return (
@@ -17,21 +16,22 @@ const TokenList = () => {
     <div>TokenList</div>
   )
 }
-function App() {
+function App2() {
   return (
     <div className="App">
-      <Switch>
-        <div>
-          <NavLink to="/home/swap">home</NavLink>
-          <NavLink to="/home/about">about</NavLink>
-          <NavLink to="/home/tokenList">about</NavLink>
+      <div>
+          <Link to="/dex">Swap</Link>
+          <Link to="/dex/about">About</Link>
+          <Link to="/dex/tokenList">TokenList</Link>
         </div>
-        <Route path="/home/swap" component={Home} exact></Route>
-        <Route path="/home/about" component={About} exact></Route>
-        <Route path="/home/tokenList" component={TokenList} exact></Route>
+      <Switch>
+        <Redirect to="/dex/swap" from="/dex" exact></Redirect>
+        <Route path="/dex/swap" component={Home} exact></Route>
+        <Route path="/dex/about" component={About} exact></Route>
+        <Route path="/dex/tokenList" component={TokenList} exact></Route>
       </Switch>
     </div>
   )
 }
 
-export default App
+export default App2
